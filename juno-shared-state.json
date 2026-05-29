@@ -8,13 +8,3 @@ state.calls = {};
 state.currentUser = null;
 currentUser = null;
 
-// Сохраняем и принудительно отправляем пустой стейт на сервер
-localStorage.setItem("juno-state-v2", JSON.stringify(state));
-if (typeof pushSharedState === "function") {
-    pushSharedState().then(() => {
-        console.log("База данных на сервере успешно очищена!");
-        location.reload();
-    });
-} else {
-    location.reload();
-}
