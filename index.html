@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Juno</title>
+    <link rel="stylesheet" href="styles.css?v=6" />
+  </head>
+  <body>
+    <main class="app-shell" id="app">
+      <section class="auth-view" id="authView">
+        <div class="brand-panel">
+          <div class="brand-mark" aria-label="Juno">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <defs>
+                <linearGradient id="junoLogo" x1="20" y1="16" x2="98" y2="104" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#ff6fb1" />
+                  <stop offset="0.48" stop-color="#7cd7ff" />
+                  <stop offset="1" stop-color="#ffe66d" />
+                </linearGradient>
+              </defs>
+              <path class="logo-back" d="M60 7c28 0 51 21.8 51 48.8 0 29.8-25.5 54.5-55.8 54.5C28.7 110.3 9 92.2 9 67.7 9 38.9 31.4 7 60 7Z" />
+              <path class="logo-moon" d="M75.4 25.5c-19.6 4-34.3 21.4-34.3 42.2 0 10.5 3.8 20.2 10.1 27.6-18-4.1-31.4-20.2-31.4-39.4 0-22.3 18.1-40.4 40.4-40.4 5.4 0 10.6 1.1 15.2 3Z" />
+              <path class="logo-comet" d="M41 69c22-3 37.9-12 55-30-8 18.5-21.8 33.4-43 42.4l-5 16.4-4.9-13.6-14.9 1.5L41 69Z" />
+              <path class="logo-star" d="M87 18l3.2 8.5 8.5 3.2-8.5 3.2L87 41.4l-3.2-8.5-8.5-3.2 8.5-3.2L87 18Z" />
+            </svg>
+          </div>
+          <h1>Juno</h1>
+          <p class="brand-space" aria-hidden="true"></p>
+        </div>
+
+        <form class="auth-card" id="authForm" onsubmit="submitAuthForm(); return false;">
+          <div class="auth-tabs" role="tablist" aria-label="Вход или регистрация">
+            <button class="tab-button active" type="button" data-auth-mode="login" onclick="setAuthMode('login')" ontouchstart="setAuthMode('login')">Вход</button>
+            <button class="tab-button" type="button" data-auth-mode="register" onclick="setAuthMode('register')" ontouchstart="setAuthMode('register')">Регистрация</button>
+          </div>
+
+          <label>
+            <span>Логин</span>
+            <input id="loginInput" autocomplete="username" required placeholder="например, alex" />
+          </label>
+
+          <label id="nameField" hidden>
+            <span>Имя</span>
+            <input id="nameInput" autocomplete="name" placeholder="Как тебя показывать" />
+          </label>
+
+          <label>
+            <span>Пароль</span>
+            <input id="passwordInput" type="password" autocomplete="current-password" required placeholder="Минимум 4 символа" />
+          </label>
+
+          <label id="avatarField" hidden>
+            <span>Аватарка</span>
+            <input id="avatarInput" type="file" accept="image/*" />
+          </label>
+
+          <button class="primary-button" type="submit" id="authSubmit">Войти</button>
+          <p class="form-note" id="authNote">Демо хранит аккаунты в этом браузере.</p>
+        </form>
+      </section>
+
+      <section class="messenger-view" id="messengerView" hidden>
+        <aside class="sidebar">
+          <header class="profile-bar">
+            <button class="avatar-button" id="profileButton" title="Профиль">
+              <img id="profileAvatar" alt="" />
+            </button>
+            <div>
+              <strong id="profileName">Juno</strong>
+              <span id="profileUsername">@juno</span>
+            </div>
+            <button class="icon-button" id="settingsButton" title="Настройки" aria-label="Настройки">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.4 13.5c.1-.5.1-1 .1-1.5s0-1-.1-1.5l2-1.5-2-3.5-2.4 1a7.8 7.8 0 0 0-2.6-1.5L14 2h-4l-.4 3a7.8 7.8 0 0 0-2.6 1.5l-2.4-1-2 3.5 2 1.5c-.1.5-.1 1-.1 1.5s0 1 .1 1.5l-2 1.5 2 3.5 2.4-1a7.8 7.8 0 0 0 2.6 1.5l.4 3h4l.4-3a7.8 7.8 0 0 0 2.6-1.5l2.4 1 2-3.5-2-1.5ZM12 15.5A3.5 3.5 0 1 1 12 8a3.5 3.5 0 0 1 0 7.5Z"/></svg>
+            </button>
+            <button class="icon-button" id="logoutButton" title="Выйти" aria-label="Выйти">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17v2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5v2H5v10h5Zm5.6-.4-1.4-1.4 2.2-2.2H9v-2h7.4l-2.2-2.2 1.4-1.4L20.4 12l-4.8 4.6Z"/></svg>
+            </button>
+          </header>
+
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 19.6-5.1-5.1a7 7 0 1 0-1.4 1.4l5.1 5.1 1.4-1.4ZM5 10.5a5.5 5.5 0 1 1 11 0 5.5 5.5 0 0 1-11 0Z"/></svg>
+            <input id="friendSearch" placeholder="Поиск друга по юзу" autocomplete="off" />
+          </div>
+          <div class="search-results" id="searchResults"></div>
+
+          <nav class="chat-list" id="chatList" aria-label="Чаты"></nav>
+        </aside>
+
+        <section class="chat-panel">
+          <header class="chat-header">
+            <button class="icon-button mobile-only" id="backButton" title="Назад" aria-label="Назад">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11v2H7.8l5.6 5.6L12 20 4 12l8-8 1.4 1.4L7.8 11H20Z"/></svg>
+            </button>
+            <button class="chat-profile-button" id="chatProfileButton" type="button" title="Открыть профиль">
+              <img class="chat-avatar" id="chatAvatar" alt="" />
+            </button>
+            <div class="chat-title-button" id="chatTitleButton" role="button" tabindex="0">
+              <strong id="chatName">Выбери чат</strong>
+              <span id="chatStatus">online</span>
+            </div>
+            <div class="chat-actions">
+              <button class="icon-button" id="voiceCallButton" title="Голосовой звонок" aria-label="Голосовой звонок">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h3l1.5 4-2 1.2a10.8 10.8 0 0 0 5.3 5.3l1.2-2L20 14v3a3 3 0 0 1-3.3 3A14.5 14.5 0 0 1 4 7.3 3 3 0 0 1 7 4Z"/></svg>
+              </button>
+              <button class="icon-button" id="videoCallButton" title="Видеозвонок" aria-label="Видеозвонок">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h11a2 2 0 0 1 2 2v1.2l3-2V17l-3-2v1a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/></svg>
+              </button>
+            </div>
+          </header>
+
+          <div class="messages" id="messages"></div>
+
+          <form class="composer" id="messageForm">
+            <label class="icon-button attach-button" title="Фото">
+              <input id="photoInput" type="file" accept="image/*" hidden />
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 12h14v-3.2l-3.2-3.2-4.2 4.2-2.1-2.1L5 17Zm3-6.5A1.5 1.5 0 1 0 8 7.5a1.5 1.5 0 0 0 0 3Z"/></svg>
+            </label>
+            <button class="icon-button" type="button" id="voiceButton" title="Голосовое" aria-label="Голосовое">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v5a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V21h2v-3.1a7 7 0 0 0 6-6.9h-2Z"/></svg>
+            </button>
+            <input id="messageInput" placeholder="Сообщение" autocomplete="off" />
+            <button class="send-button" type="submit" aria-label="Отправить">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20.5 22 12 3 3.5V10l12 2-12 2v6.5Z"/></svg>
+            </button>
+          </form>
+
+          <div class="recording-bar" id="recordingBar" hidden>
+            <span class="record-dot"></span>
+            <strong id="recordingTime">0:00</strong>
+            <button class="secondary-button" id="cancelVoiceButton" type="button">Отмена</button>
+            <button class="primary-button compact" id="sendVoiceButton" type="button">Отправить</button>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <dialog class="call-dialog" id="callDialog">
+      <div class="call-surface">
+        <img id="callAvatar" alt="" />
+        <video id="localVideo" autoplay muted playsinline hidden></video>
+        <h2 id="callTitle">Звонок</h2>
+        <p id="callSubtitle">Соединение...</p>
+        <div class="call-controls">
+          <button class="icon-button active" id="muteButton" title="Микрофон" aria-label="Микрофон">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v5a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V21h2v-3.1a7 7 0 0 0 6-6.9h-2Z"/></svg>
+          </button>
+          <button class="hang-button" id="hangButton" aria-label="Завершить">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c3.2-2.4 7.6-2.4 10.8 0l1.8-1.8a2 2 0 0 1 2.8 0l1 1-4.2 4.2-2.8-2.8a9.2 9.2 0 0 0-8 0l-2.8 2.8L1 10l1-1a2 2 0 0 1 2.8 0l1.8 1.8Z"/></svg>
+          </button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="sheet-dialog" id="profileDialog">
+      <form class="sheet-card" id="profileForm" method="dialog">
+        <header class="sheet-header">
+          <h2>Мой профиль</h2>
+          <button class="icon-button" type="button" data-close-dialog="profileDialog" aria-label="Закрыть">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6.4 5 5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5Z"/></svg>
+          </button>
+        </header>
+        <img class="profile-preview" id="editAvatarPreview" alt="" />
+        <label>
+          <span>Имя</span>
+          <input id="editNameInput" required />
+        </label>
+        <label>
+          <span>Юз</span>
+          <input id="editUsernameInput" required />
+        </label>
+        <label>
+          <span>Новая аватарка</span>
+          <input id="editAvatarInput" type="file" accept="image/*" />
+        </label>
+        <label>
+          <span>Новый пароль</span>
+          <input id="editPasswordInput" type="password" placeholder="Оставь пустым, если не меняешь" />
+        </label>
+        <p class="form-note" id="profileNote"></p>
+        <button class="primary-button" type="submit">Сохранить</button>
+      </form>
+    </dialog>
+
+    <dialog class="sheet-dialog" id="userDialog">
+      <div class="sheet-card">
+        <header class="sheet-header">
+          <h2>Профиль</h2>
+          <button class="icon-button" type="button" data-close-dialog="userDialog" aria-label="Закрыть">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6.4 5 5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5Z"/></svg>
+          </button>
+        </header>
+        <img class="profile-preview" id="viewAvatar" alt="" />
+        <h3 id="viewName"></h3>
+        <p class="form-note" id="viewUsername"></p>
+        <button class="primary-button" id="messageUserButton" type="button">Написать</button>
+      </div>
+    </dialog>
+
+    <dialog class="sheet-dialog" id="photoDialog">
+      <form class="sheet-card" id="photoForm" method="dialog">
+        <header class="sheet-header">
+          <h2>Отправить фото</h2>
+          <button class="icon-button" type="button" id="cancelPhotoButton" aria-label="Закрыть">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6.4 5 5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5Z"/></svg>
+          </button>
+        </header>
+        <img class="photo-preview" id="photoPreview" alt="Предпросмотр фото" />
+        <label>
+          <span>Подпись</span>
+          <input id="photoCaptionInput" placeholder="Добавь сообщение к фото" />
+        </label>
+        <button class="primary-button" type="submit">Отправить</button>
+      </form>
+    </dialog>
+
+    <dialog class="sheet-dialog" id="settingsDialog">
+      <div class="sheet-card">
+        <header class="sheet-header">
+          <h2>Настройки</h2>
+          <button class="icon-button" type="button" data-close-dialog="settingsDialog" aria-label="Закрыть">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6.4 5 5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5Z"/></svg>
+          </button>
+        </header>
+        <section class="settings-section">
+          <strong>Тема</strong>
+          <div class="segmented-control" role="group" aria-label="Тема">
+            <button class="theme-option" type="button" data-theme-value="light">Светлая</button>
+            <button class="theme-option" type="button" data-theme-value="dark">Тёмная</button>
+          </div>
+        </section>
+        <section class="settings-section">
+          <strong>Устройства</strong>
+          <div class="device-list" id="deviceList"></div>
+        </section>
+      </div>
+    </dialog>
+
+    <script src="app.js?v=14"></script>
+  </body>
+</html>
